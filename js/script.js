@@ -188,9 +188,10 @@ if (!date) {
             const msg = document.getElementById('form-message');
 
 msg.innerHTML = "✅ Appointment booked successfully! Our clinic will contact you shortly.";
-msg.style.display = "block";
-msg.style.visibility = "visible";
-msg.style.opacity = "1";
+msg.classList.add("show");
+// msg.style.display = "block";
+// msg.style.visibility = "visible";
+// msg.style.opacity = "1";
 
             setTimeout(() => {
                 msg.style.display = 'none';
