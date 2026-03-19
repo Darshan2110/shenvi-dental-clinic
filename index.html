@@ -543,5 +543,30 @@
 
     <!-- Custom JS -->
     <script src="js/script.js"></script>
+
+     <!-- Google Sheets Script -->
+    <script>
+document.querySelector("form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const data = {
+      name: document.querySelector("[name='name']").value,
+    phone: document.querySelector("[name='phone']").value,
+    date: document.querySelector("[name='date']").value,
+    message: document.querySelector("[name='message']").value
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbwNRr36gmx-5oKK3ZaRtbBbswSsiEoBKIiJ-Tovh53flj790vs0YMyXyGVmAei8xlPW/exec",
+{
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(res => {
+    alert("Appointment booked successfully!");
+    document.querySelector("form").reset();
+  })
+  .catch(err => alert("Something went wrong"));
+});
+</script>
 </body>
 </html>
