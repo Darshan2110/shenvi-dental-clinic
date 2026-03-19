@@ -1357,4 +1357,8 @@ img {
     .contact-map {
         min-height: 300px;
     }
+   .form-control {
+  width: 100%;
+  box-sizing: border-box;
+}
 }
