@@ -123,10 +123,15 @@ if (bookingForm) {
         const message = bookingForm.querySelector("[name='message']").value;
 
         // 🔴 Phone validation (no design change)
-        if (!/^[6-9]\d{9}$/.test(phone)) {
-            alert("Please enter a valid 10-digit Indian mobile number");
-            return;
-        }
+        const error = document.getElementById("phone-error");
+
+if (!/^[6-9]\d{9}$/.test(phone)) {
+  error.innerText = "Enter valid 10-digit number";
+  error.style.display = "block";
+  return;
+} else {
+  error.style.display = "none";
+}
 
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
         btn.style.opacity = '0.8';
