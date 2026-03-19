@@ -134,6 +134,10 @@ if (!name) {
     return;
 }
 
+             document.querySelector("[name='phone']").addEventListener("input", function () {
+    document.getElementById("phone-error").style.display = "none";
+});
+        
 // Phone validation
 if (!phone) {
     error.innerText = "Phone number is required";
@@ -152,6 +156,7 @@ if (!date) {
     alert("Please select a date");
     return;
 }
+   
 
 // if (!/^[6-9]\d{9}$/.test(phone)) {
 //   error.innerText = "Enter valid 10-digit number";
