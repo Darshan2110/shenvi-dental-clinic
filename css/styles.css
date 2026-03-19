@@ -1083,9 +1083,8 @@ img {
 }
 
 .form-message {
-    margin-top: 1rem;
-    font-weight: 500;
-    display: none;
+  display: none;
+  font-size: 14px;
 }
 
 .form-message.success {
