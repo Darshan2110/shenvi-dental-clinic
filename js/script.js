@@ -193,9 +193,9 @@ msg.classList.add("show");
 // msg.style.visibility = "visible";
 // msg.style.opacity = "1";
 
-            setTimeout(() => {
-                msg.style.display = 'none';
-            }, 5000);
+            // setTimeout(() => {
+            //     msg.style.display = 'none';
+            // }, 5000);
         })
         .catch(err => {
             alert("Something went wrong");
