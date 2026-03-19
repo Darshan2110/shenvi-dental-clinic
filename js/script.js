@@ -106,34 +106,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 4. Booking Form Submission (Basic Mock) ---
-    const bookingForm = document.getElementById('booking-form');
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = bookingForm.querySelector('.btn-submit');
-            const originalText = btn.textContent;
-            
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
-            btn.style.opacity = '0.8';
-            
-            // Mock API call delay
-            setTimeout(() => {
-                bookingForm.reset();
-                btn.textContent = originalText;
-                btn.style.opacity = '1';
-                
-                const msg = document.getElementById('form-message');
-                msg.textContent = 'Appointment request sent successfully! We will contact you shortly.';
-                msg.classList.add('success');
-                msg.style.display = 'block';
-                
-                setTimeout(() => {
-                    msg.classList.remove('success');
-                    msg.style.display = 'none';
-                }, 5000);
-            }, 1500);
-        });
-    }
+  // --- 4. Booking Form Submission (REAL) ---
+const bookingForm = document.getElementById('booking-form');
 
-});
+if (bookingForm) {
+    bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const btn = bookingForm.querySelector('.btn-submit');
+        const originalText = btn.textContent;
+
+        // Get values
+        const name = bookingForm.querySelector("[name='name']").value;
+        const phone = bookingForm.querySelector("[name='phone']").value;
+        const date = bookingForm.querySelector("[name='date']").value;
+        const message = bookingForm.querySelector("[name='message']").value;
+
+        // 🔴 Phone validation (no design change)
+        if (!/^[6-9]\d{9}$/.test(phone)) {
+            alert("Please enter a valid 10-digit Indian mobile number");
+            return;
+        }
+
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+        btn.style.opacity = '0.8';
+
+        // Send to Google Sheets
+        fetch("https://script.google.com/macros/s/AKfycbwNRr36gmx-5oKK3ZaRtbBbswSsiEoBKIiJ-Tovh53flj790vs0YMyXyGVmAei8xlPW/exec", {
+            method: "POST",
+            body: JSON.stringify({
+                name: name,
+                phone: phone,
+                date: date,
+                message: message
+            })
+        })
+        .then(res => {
+            bookingForm.reset();
+            btn.textContent = originalText;
+            btn.style.opacity = '1';
+
+            const msg = document.getElementById('form-message');
+            msg.textContent = "Appointment booked successfully! Our clinic will contact you shortly.";
+            msg.classList.add('success');
+            msg.style.display = 'block';
+
+            setTimeout(() => {
+                msg.style.display = 'none';
+            }, 5000);
+        })
+        .catch(err => {
+            alert("Something went wrong");
+            btn.textContent = originalText;
+            btn.style.opacity = '1';
+        });
+    });
+}
