@@ -122,21 +122,44 @@ if (bookingForm) {
         const date = bookingForm.querySelector("[name='date']").value;
         const message = bookingForm.querySelector("[name='message']").value;
 
-        // 🔴 Phone validation (no design change)
-        const error = document.getElementById("phone-error");
+       // Get error element
+const error = document.getElementById("phone-error");
 
-        if (!phone) {
-  alert("Phone number is required");
-  return;
+// Clear previous error
+error.style.display = "none";
+
+// Name validation
+if (!name) {
+    alert("Please enter your name");
+    return;
+}
+
+// Phone validation
+if (!phone) {
+    error.innerText = "Phone number is required";
+    error.style.display = "block";
+    return;
 }
 
 if (!/^[6-9]\d{9}$/.test(phone)) {
-  error.innerText = "Enter valid 10-digit number";
-  error.style.display = "block";
-  return;
-} else {
-  error.style.display = "none";
+    error.innerText = "Enter valid 10-digit Indian number";
+    error.style.display = "block";
+    return;
 }
+
+// Date validation
+if (!date) {
+    alert("Please select a date");
+    return;
+}
+
+// if (!/^[6-9]\d{9}$/.test(phone)) {
+//   error.innerText = "Enter valid 10-digit number";
+//   error.style.display = "block";
+//   return;
+// } else {
+//   error.style.display = "none";
+// }
         
 
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
