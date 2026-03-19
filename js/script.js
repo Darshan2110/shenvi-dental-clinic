@@ -125,6 +125,11 @@ if (bookingForm) {
         // 🔴 Phone validation (no design change)
         const error = document.getElementById("phone-error");
 
+        if (!phone) {
+  alert("Phone number is required");
+  return;
+}
+
 if (!/^[6-9]\d{9}$/.test(phone)) {
   error.innerText = "Enter valid 10-digit number";
   error.style.display = "block";
@@ -132,10 +137,7 @@ if (!/^[6-9]\d{9}$/.test(phone)) {
 } else {
   error.style.display = "none";
 }
-        if (!phone) {
-  alert("Phone number is required");
-  return;
-}
+        
 
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
         btn.style.opacity = '0.8';
