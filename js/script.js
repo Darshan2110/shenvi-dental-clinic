@@ -193,6 +193,8 @@ if (!date) {
     msg.style.color = "green";
     msg.style.marginTop = "10px";
 
+            console.log("Success block running");
+
 
 // msg.style.display = "block";
 // msg.style.visibility = "visible";
