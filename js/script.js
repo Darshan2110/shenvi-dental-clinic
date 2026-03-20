@@ -181,14 +181,19 @@ if (!date) {
             })
         })
         .then(res => {
-            bookingForm.reset();
-            btn.textContent = originalText;
-            btn.style.opacity = '1';
+    bookingForm.reset();
+    btn.textContent = originalText;
+    btn.style.opacity = '1';
 
-            const msg = document.getElementById('form-message');
+    const msg = document.getElementById('form-message');
 
-msg.innerHTML = "✅ Appointment booked successfully! Our clinic will contact you shortly.";
-msg.classList.add("show");
+    // FORCE SHOW (ignore CSS issues)
+    msg.innerHTML = "✅ Appointment booked successfully! Our clinic will contact you shortly.";
+    msg.style.display = "block";
+    msg.style.color = "green";
+    msg.style.marginTop = "10px";
+
+
 // msg.style.display = "block";
 // msg.style.visibility = "visible";
 // msg.style.opacity = "1";
