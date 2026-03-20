@@ -1,7 +1,7 @@
 /**
  * Main JavaScript File for Shenvi Dental Clinic
  */
-
+console.log("JS WORKING");
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- 1. Header Scroll Effect ---
