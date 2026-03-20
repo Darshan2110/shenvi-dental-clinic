@@ -1082,10 +1082,10 @@ img {
     margin-top: 1rem;
 }
 
-.form-message {
+/* .form-message {
   display: none;
   font-size: 14px;
-}
+} */
 
 .form-message.success {
     display: block;
