@@ -134,9 +134,7 @@ if (!name) {
     return;
 }
 
-             document.querySelector("[name='phone']").addEventListener("input", function () {
-    document.getElementById("phone-error").style.display = "none";
-});
+  
         
 // Phone validation
 if (!phone) {
@@ -172,14 +170,20 @@ if (!date) {
 
         // Send to Google Sheets
         fetch("https://script.google.com/macros/s/AKfycbwNRr36gmx-5oKK3ZaRtbBbswSsiEoBKIiJ-Tovh53flj790vs0YMyXyGVmAei8xlPW/exec", {
-            method: "POST",
-            body: JSON.stringify({
-                name: name,
-                phone: phone,
-                date: date,
-                message: message
-            })
-        })
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        name: name,
+        phone: phone,
+        date: date,
+        message: message
+    })
+})
+                       document.querySelector("[name='phone']").addEventListener("input", function () {
+    document.getElementById("phone-error").style.display = "none";
+});
         .then(res => {
     bookingForm.reset();
     btn.textContent = originalText;
